@@ -67,7 +67,7 @@ createApp({
       clearInterval(this.autoP);
       this.autoP = setInterval(()=>{
         this.prevImage();
-      },1000)
+      },3000)
     },
     playStopButtonAutoplay(){
       if(!this.playStop){
