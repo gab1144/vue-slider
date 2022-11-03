@@ -32,7 +32,9 @@ createApp({
         }
       ],
       activeImg: 0,
-      autoP: undefined
+      autoP: undefined,
+      playStop: false, 
+      playStopButton: "Interrompi lo scorrimento"
     }
   },
   methods:{
@@ -66,7 +68,19 @@ createApp({
       this.autoP = setInterval(()=>{
         this.prevImage();
       },1000)
+    },
+    playStopButtonAutoplay(){
+      if(!this.playStop){
+        this.stopAutoplay();
+        this.playStopButton="Riprendi lo scorrimento"
+        this.playStop = !this.playStop;
+      } else {
+        this.playAutoplay();
+        this.playStopButton="Interrompi lo scorrimento"
+        this.playStop = !this.playStop;
+      }
     }
+
   },
   mounted(){
     this.playAutoplay();
