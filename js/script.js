@@ -58,7 +58,7 @@ createApp({
     playAutoplay(){
       this.autoP = setInterval(()=>{
         this.nextImage();
-      },1000)
+      },3000)
     },
     stopAutoplay(){
       clearInterval(this.autoP);
