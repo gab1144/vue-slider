@@ -28,45 +28,50 @@
   <div id="app">
     <div class="main-wrapper">
       <div class="container">
-  
-        <!-- ========== slider ========== -->
-        <div class="slider">
-          <!-- ========== descrizione immagine ========== -->
-          <div class="image-description">
-            <h2 id="country-name">{{images[activeImg].country}}</h2>
-            <span id="description">{{images[activeImg].description}}</span>
+      
+        <div
+        @mouseover="stopAutoplay()"
+        @mouseleave="playAutoplay()">
+          <!-- ========== slider ========== -->
+          <div class="slider">
+            <!-- ========== descrizione immagine ========== -->
+            <div class="image-description">
+              <h2 id="country-name">{{images[activeImg].country}}</h2>
+              <span id="description">{{images[activeImg].description}}</span>
+            </div>
+            <!-- ========== /descrizione immagine ========== -->
+          
+            <!-- immagini -->
+            <img 
+              :src="images[activeImg].url" 
+              :alt="images[activeImg].country">
           </div>
-          <!-- ========== /descrizione immagine ========== -->
-          
-          <!-- immagini -->
-          <img 
-            :src="images[activeImg].url" 
-            :alt="images[activeImg].country">
-        </div>
-        <!-- ========== /slider ========== -->
+          <!-- ========== /slider ========== -->
         
-        <!-- ========== thumbnails ========== -->
-        <div class="thumbnails">
+          <!-- ========== thumbnails ========== -->
+          <div class="thumbnails">
           
-          <!-- ========== bottoni chevron ========== -->
-          <div class="btn-chevron left" @click="prevImage()"><i class="fa-solid fa-chevron-left"></i></div>
-          <div class="btn-chevron right" @click="nextImage()"><i class="fa-solid fa-chevron-right"></i></div>
-          <!-- ========== /bottoni chevron ========== -->
+            <!-- ========== bottoni chevron ========== -->
+            <div class="btn-chevron left" @click="prevImage()"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="btn-chevron right" @click="nextImage()"><i class="fa-solid fa-chevron-right"></i></div>
+            <!-- ========== /bottoni chevron ========== -->
           
-          <img 
-            v-for="(image, indice) in images"
-            :src="image.url" 
-            :alt="image.country"
-            class="thumbnail-item"
-            :class="{'active': indice == activeImg}"
-            @click="changeImage(indice)">
+            <img 
+              v-for="(image, indice) in images"
+              :src="image.url" 
+              :alt="image.country"
+              class="thumbnail-item"
+              :class="{'active': indice == activeImg}"
+              @click="changeImage(indice)">
+          </div>
+          <!-- ========== /thumbnails ========== -->
         </div>
-        <!-- ========== /thumbnails ========== -->
+        
   
         <!-- ========== bottoni controllo autoplay ========== -->
         <div class="controls">
-          <button id="reverse">Inverti l'ordine di scorrimento</button>
-          <button id="play-pause">Interrompi lo scorrimento</button>
+          <button id="reverse" @click="reverseAutoplay()">Inverti l'ordine di scorrimento</button>
+          <button id="play-pause" @click="stopAutoplay()">Interrompi lo scorrimento</button>
         </div>
         <!-- ========== /bottoni controllo autoplay ========== -->
   

@@ -31,34 +31,44 @@ createApp({
           description: "Lorem ipsum dolor"
         }
       ],
-      activeImg: 0
+      activeImg: 0,
+      autoP: undefined
     }
   },
   methods:{
-    nextImage() {
+    nextImage(){
       if(this.activeImg === (this.images.length - 1)) {
         this.activeImg=0;
       } else {
         this.activeImg++;
       }
     },
-    prevImage() {
+    prevImage(){
       if(this.activeImg === 0) {
         this.activeImg=this.images.length - 1;
       } else {
         this.activeImg--;
       }
     },
-    changeImage(index) {
+    changeImage(index){
       this.activeImg=index;
     },
-    autoPlay(){
-      setInterval(()=>{
+    playAutoplay(){
+      this.autoP = setInterval(()=>{
         this.nextImage();
-      },3000)
+      },1000)
+    },
+    stopAutoplay(){
+      clearInterval(this.autoP);
+    },
+    reverseAutoplay(){
+      clearInterval(this.autoP);
+      this.autoP = setInterval(()=>{
+        this.prevImage();
+      },1000)
     }
   },
   mounted(){
-    this.autoPlay();
+    this.playAutoplay();
   }
 }).mount('#app')
